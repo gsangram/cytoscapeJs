@@ -96,12 +96,12 @@ style: cytoscape.stylesheet()
   },
   
   // default attributes or initial view port state
-  zoom: 1,
+  zoom: 2,
   pan: { x: 0, y: 0 },
   
   //setting up of interactions or interaction options: 
   minZoom: 1e-50,
-  maxZoom: 1e50,
+  maxZoom: 5,
   zoomingEnabled: true,
   userZoomingEnabled: true,
   panningEnabled: true,
@@ -124,7 +124,6 @@ style: cytoscape.stylesheet()
   motionBlurOpacity: 0.2,
   wheelSensitivity: 1,
   pixelRatio: 'auto'
-  
 });
 
 //cy.animate({
@@ -145,32 +144,55 @@ cy.animate({
   duration: 100
 });
 
-var jaAni = cy.$('#c').animation({
-  style: {
-    'background-color': '#FFFF00',
-    'width': 75
-  },
-//  duration: 500
-});
-jaAni.progress(0.5).play();
 
-var jAni = cy.$('#ab').animation({
-  style: {
-    'background-color': 'red',
-    'width': 30
-  },
-  duration: 1000
-});
-//jAni.progress(0.5).play();
-jAni
-  .play() // start
-  .promise('completed').then(function(){ // on next completed
-    jAni
-      .reverse() // switch animation direction
-      .rewind() // optional but makes intent clear
-      .play() // start again
-    ;
-  });
+//var jAni = cy.$('#ab').animation({
+//  style: {
+//    'background-color': 'red',
+//    'width': 30
+//  },
+//  duration: 1000
+//});
+////jAni.progress(0.5).play();
+//jAni
+//  .play() // start
+//  .promise('completed').then(function(){ // on next completed
+//    jAni
+//      .reverse() // switch animation direction
+//      .rewind() // optional but makes intent clear
+//      .play() // start again
+//    ;
+//  });
+
+$("#bt").click(function(){  
+//var b64key = 'base64,';
+//var b64 = cy.png().substring( cy.png().indexOf(b64key) + b64key.length );
+//var imgBlob = base64ToBlob( b64, 'image/png' );
+//console.log('ingblob',imgBlob);
+//saveAs(imgBlob, 'Graph1.png');
  
+var jsonObj=cy.json();
+var jsonObjArr=cy.elements().jsons();
+console.log('jsonObj',jsonObj);
+console.log('jsonObjArr',jsonObjArr);
+
+write(jsonObj, file="export.JSON");
+
 
 });
+});
+
+
+//var obj = {a: 123, b: "4 5 6"};
+//var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(obj));
+//$('<a href="data:' + data + '" download="data.json">download JSON</a>').appendTo('#container');
+
+
+//var eleObj=cy.json();
+//var eles= cy.elements().jsons();
+//console.log('ingblob',eles);
+
+//var elesAdd= cy.add(eles);
+//  var aloo=cy.elements().json();
+//var string= JSON.stringify(cy.json())
+//console.log('iiiiiiiiiiiiiii',string);
+//  saveAs(string, 'Graph1.json');
